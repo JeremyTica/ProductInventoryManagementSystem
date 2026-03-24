@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using ProductInventoryManagementSystem.Services;
+
 namespace ProductInventoryManagementSystem.Operations
 {
     public class Program
@@ -10,6 +13,11 @@ namespace ProductInventoryManagementSystem.Operations
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // Configure Entity Framework Core to use SQLite as the database provider and set up the connection string from the configuration
+            builder.Services.AddDbContext<ProductDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("ProductDbConnection")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
