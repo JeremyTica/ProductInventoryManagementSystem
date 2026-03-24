@@ -23,5 +23,38 @@ namespace ProductInventoryManagementSystem.Operations.Controllers
         {
             _productServices = productServices;
         }
+
+        /// <summary>
+        /// This function is responsible for handling the API request to retrieve a product by its id
+        /// </summary>
+        /// <param name="id">
+        /// The id of the product to be retrieved from the database
+        /// </param>
+        /// <returns>
+        /// The status code of the API response and the product
+        /// </returns>
+        [HttpGet("GetProduct")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            var product = _productServices.GetProduct(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        /// <summary>
+        /// This function is responsible for handling the API requests to retrieve all products from the database collection
+        /// </summary>
+        /// <returns>
+        /// The status of the API response and the products
+        /// </returns>
+        [HttpGet("GetAllProducts")]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var products = _productServices.GetAllProducts();
+            return Ok(products);
+        }
     }
 }
