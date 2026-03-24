@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductInventoryManagementSystem.Entities.Models;
+using ProductInventoryManagementSystem.Operations.DTOs;
 using ProductInventoryManagementSystem.Services.Interfaces;
 
 namespace ProductInventoryManagementSystem.Operations.Controllers
@@ -22,6 +24,32 @@ namespace ProductInventoryManagementSystem.Operations.Controllers
         public ProductController(IProductServices productServices)
         {
             _productServices = productServices;
+        }
+
+        [HttpPost("AddProduct")]
+        public async Task<IActionResult> AddProduct(ProductDto productDto)
+        {
+            if (productDto == null) return BadRequest("Product data is null");
+
+            var product = new Product
+            {
+                Name = productDto.Name,
+                Description = productDto.Description,
+                Price = productDto.Price,
+                Category = productDto.Category,
+                SKU = productDto.SKU,
+                CreatedDate = DateTime.Now,
+
+                Inventory = new Inventory
+                {
+                    QuantityInStock = productDto.QuantityInStock,
+                    ReorderLevel = productDto.ReorderLevel
+                }
+            };
+
+            _productServices.AddProduct(product);
+
+            return Ok("Product Added Successfully");
         }
 
         /// <summary>

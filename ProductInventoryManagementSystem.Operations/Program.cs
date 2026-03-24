@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using ProductInventoryManagementSystem.Services;
+using ProductInventoryManagementSystem.Services.Interfaces;
+using ProductInventoryManagementSystem.Services.ProductServices;
 
 namespace ProductInventoryManagementSystem.Operations
 {
@@ -13,6 +15,9 @@ namespace ProductInventoryManagementSystem.Operations
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // Register Services
+            builder.Services.AddScoped<IProductServices, ProductRepository>();
 
             // Configure Entity Framework Core to use SQLite as the database provider and set up the connection string from the configuration
             builder.Services.AddDbContext<ProductDbContext>(options =>

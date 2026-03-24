@@ -1,4 +1,5 @@
 ﻿using ProductInventoryManagementSystem.Entities.Models;
+using ProductInventoryManagementSystem.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ProductInventoryManagementSystem.Services.ProductServices
     /// <summary>
     /// This class represents a repository that will be used to manage data access for products within the management system
     /// </summary>
-    public class ProductRepository
+    public class ProductRepository : IProductServices
     {
         ProductDbContext _productDbContext;
 
