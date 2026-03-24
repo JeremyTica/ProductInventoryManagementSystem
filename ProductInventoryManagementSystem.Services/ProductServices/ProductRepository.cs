@@ -66,5 +66,25 @@ namespace ProductInventoryManagementSystem.Services.ProductServices
         {
             return _productDbContext.Products.AsEnumerable();
         }
+
+        /// <summary>
+        /// This function is responsible for updating an existing product in the database collection. 
+        /// It first checks if the product exists, and if it does, it updates the product and saves the changes to the database. 
+        /// If the product does not exist, it returns null.
+        /// </summary>
+        /// <param name="product">
+        /// The product to be updated
+        /// </param>
+        /// <returns>
+        /// The updated product
+        /// </returns>
+        public Product? UpdateProduct(Product product)
+        {
+            var existingProduct = _productDbContext.Products.Find(product.Id);
+            if (existingProduct == null) return null;
+            _productDbContext.Products.Update(existingProduct);
+            _productDbContext.SaveChanges();
+            return existingProduct;
+        }
     }
 }
