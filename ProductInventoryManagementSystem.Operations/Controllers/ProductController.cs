@@ -26,6 +26,15 @@ namespace ProductInventoryManagementSystem.Operations.Controllers
             _productServices = productServices;
         }
 
+        /// <summary>
+        /// This function is responsible for handling the API request to add a new product to the database collection
+        /// </summary>
+        /// <param name="productDto">
+        /// The data transfer object containing the necessary information for creating a new product in the database collection, including the product details and inventory information
+        /// </param>
+        /// <returns>
+        /// The status code of the API response and a message indicating the success of the operation
+        /// </returns>
         [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct(ProductDto productDto)
         {
@@ -65,10 +74,8 @@ namespace ProductInventoryManagementSystem.Operations.Controllers
         public async Task<IActionResult> GetProduct(int id)
         {
             var product = _productServices.GetProduct(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+            if (product == null) return NotFound();
+
             return Ok(product);
         }
 
@@ -83,6 +90,53 @@ namespace ProductInventoryManagementSystem.Operations.Controllers
         {
             var products = _productServices.GetAllProducts();
             return Ok(products);
+        }
+
+        /// <summary>
+        /// This function is responsible for handling the API request to update an existing product in the database collection
+        /// </summary>
+        /// <param name="product">
+        /// The product to be updated
+        /// </param>
+        /// <returns>
+        /// The status code of the API response and a message indicating the success of the operation
+        /// </returns>
+        [HttpPut("UpdateProduct")]
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        {
+            if (product == null) return BadRequest("Product data is null");
+            var existingProduct = _productServices.GetProduct(product.Id);
+            if (existingProduct == null) return NotFound("Product not found");
+
+            existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.Price = product.Price;
+            existingProduct.Category = product.Category;
+            existingProduct.SKU = product.SKU;
+
+            _productServices.UpdateProduct(existingProduct);
+
+            return Ok("Product Updated Successfully");
+        }
+
+        /// <summary>
+        /// This function is responsible for fetching a product from the database collection through a given id and deleting it if it exists.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the product to be deleted
+        /// </param>
+        /// <returns>
+        /// The status code of the API response and a message indicating the success of the operation
+        /// </returns>
+        [HttpDelete("DeleteProduct")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = _productServices.GetProduct(id);
+            if (product == null) return NotFound("Product not found");
+
+            _productServices.DeleteProduct(id);
+
+            return Ok("Product Deleted Successfully");
         }
     }
 }
