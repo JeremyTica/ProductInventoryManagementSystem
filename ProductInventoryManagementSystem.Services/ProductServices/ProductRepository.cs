@@ -20,7 +20,8 @@ namespace ProductInventoryManagementSystem.Services.ProductServices
         /// <param name="productDbContext">
         /// The database context to be used by the repository
         /// </param>
-        public ProductRepository(ProductDbContext productDbContext) {
+        public ProductRepository(ProductDbContext productDbContext)
+        {
             _productDbContext = productDbContext;
         }
 
@@ -38,6 +39,32 @@ namespace ProductInventoryManagementSystem.Services.ProductServices
             _productDbContext.Products.Add(product);
             _productDbContext.SaveChanges();
             return product;
+        }
+
+        /// <summary>
+        /// This function is responsible for fetching a product from the database collection through a given id
+        /// </summary>
+        /// <param name="id">
+        /// The id of the product to be retrieved
+        /// </param>
+        /// <returns>
+        /// The product of the given id
+        /// </returns>
+        public Product? GetProduct(int id)
+        {
+            return _productDbContext.Products.FirstOrDefault(p => p.Id == id);
+
+        }
+
+        /// <summary>
+        /// This function is responsible for fetching all products from the database collection
+        /// </summary>
+        /// <returns>
+        /// An enumerable collection of all products
+        /// </returns>
+        public IEnumerable<Product> GetAllProducts()
+        {
+            return _productDbContext.Products.AsEnumerable();
         }
     }
 }
