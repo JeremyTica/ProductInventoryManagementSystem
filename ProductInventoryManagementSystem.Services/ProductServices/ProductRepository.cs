@@ -86,5 +86,21 @@ namespace ProductInventoryManagementSystem.Services.ProductServices
             _productDbContext.SaveChanges();
             return existingProduct;
         }
+
+        /// <summary>
+        /// This function is responsible for deleting a product from the database collection through a given id
+        /// </summary>
+        /// <param name="id">
+        /// The id of the product to be deleted
+        /// </param>
+        public void DeleteProduct(int id)
+        {
+            var product = _productDbContext.Products.Find(id);
+            if (product != null)
+            {
+                _productDbContext.Products.Remove(product);
+                _productDbContext.SaveChanges();
+            }
+        }
     }
 }
