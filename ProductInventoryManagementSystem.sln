@@ -4,6 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36414.22 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductInventoryManagementSystem.Operations", "ProductInventoryManagementSystem.Operations\ProductInventoryManagementSystem.Operations.csproj", "{6CBFFD2A-CFD2-449F-9ABA-4E7B9AEA7A00}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B8645574-88D0-4401-81F6-55E5A631B3E3} = {B8645574-88D0-4401-81F6-55E5A631B3E3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductInventoryManagementSystem.Services", "ProductInventoryManagementSystem.Services\ProductInventoryManagementSystem.Services.csproj", "{B8645574-88D0-4401-81F6-55E5A631B3E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9CC471BB-7DD5-4459-87A1-769321FA46BC} = {9CC471BB-7DD5-4459-87A1-769321FA46BC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductInventoryManagementSystem.Entities", "ProductInventoryManagementSystem.Entities\ProductInventoryManagementSystem.Entities.csproj", "{9CC471BB-7DD5-4459-87A1-769321FA46BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,14 @@ Global
 		{6CBFFD2A-CFD2-449F-9ABA-4E7B9AEA7A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CBFFD2A-CFD2-449F-9ABA-4E7B9AEA7A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CBFFD2A-CFD2-449F-9ABA-4E7B9AEA7A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8645574-88D0-4401-81F6-55E5A631B3E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8645574-88D0-4401-81F6-55E5A631B3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8645574-88D0-4401-81F6-55E5A631B3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8645574-88D0-4401-81F6-55E5A631B3E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC471BB-7DD5-4459-87A1-769321FA46BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC471BB-7DD5-4459-87A1-769321FA46BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC471BB-7DD5-4459-87A1-769321FA46BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC471BB-7DD5-4459-87A1-769321FA46BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
